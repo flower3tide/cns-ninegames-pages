@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>足彩网 · 知识与工具索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', Helvetica, Arial, sans-serif;
+            background: #f5f7fa;
+            color: #1e293b;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* 深色头图区域 —— 知识库入口感 */
+        .hero-dark {
+            background: #0f172a;
+            padding: 3rem 1.25rem 2.5rem;
+            text-align: center;
+            color: #e2e8f0;
+            border-bottom: 3px solid #facc15;
+        }
+
+        .hero-dark h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-dark .sub {
+            font-size: 1rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0.5rem auto 1.5rem;
+        }
+
+        .hero-dark .badge-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            border: 1px solid #334155;
+        }
+
+        /* 主要内容区 浅色 */
+        .main-content {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 2rem 1.25rem 3rem;
+        }
+
+        /* 目录感布局：卡片网格 */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        .guide-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.4rem 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e9edf2;
+            transition: all 0.15s ease;
+        }
+
+        .guide-card:hover {
+            border-color: #facc15;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .guide-card .card-title {
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0f172a;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .guide-card p {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.3rem;
+        }
+        .card-link:hover {
+            text-decoration: underline;
+            color: #1e40af;
+        }
+
+        /* 说明区 & 提示区 混合排版 */
+        .info-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .info-block .section {
+            flex: 1 1 240px;
+            background: white;
+            padding: 1.5rem 1.5rem 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border: 1px solid #eef2f6;
+        }
+
+        .section h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .section p, .section li {
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .section li {
+            padding: 0.25rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+        .section li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #facc15;
+        }
+
+        .tip-box {
+            background: #fefce8;
+            border-left: 4px solid #facc15;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            margin: 1.8rem 0 2.2rem;
+        }
+
+        .tip-box strong {
+            color: #92400e;
+        }
+        .tip-box p {
+            color: #5c3e0f;
+            font-size: 0.95rem;
+        }
+
+        .related-area {
+            background: white;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem;
+            border: 1px solid #eef2f6;
+            margin: 1.8rem 0;
+        }
+
+        .related-area h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.8rem;
+        }
+
+        .related-area .faq-item {
+            border-bottom: 1px dashed #e2e8f0;
+            padding: 0.6rem 0;
+        }
+        .related-area .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item .q {
+            font-weight: 500;
+            color: #1e293b;
+        }
+        .faq-item .a {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 0.1rem;
+        }
+
+        .inline-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .inline-link:hover {
+            text-decoration: underline;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .hero-dark h1 {
+                font-size: 1.7rem;
+            }
+            .hero-dark {
+                padding: 2rem 1rem 1.8rem;
+            }
+            .main-content {
+                padding: 1.5rem 1rem 2.5rem;
+            }
+        }
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            border-top: 1px solid #e2e8f0;
+            padding: 1.5rem 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero-dark">
+    <h1>📚 足彩知识库</h1>
+    <div class="sub">面向竞猜爱好者 · 信息聚合与工具索引</div>
+    <div class="badge-wrapper">
+        <span class="badge">赛事分析</span>
+        <span class="badge">数据参考</span>
+        <span class="badge">赔率观察</span>
+        <span class="badge">规则备忘</span>
+    </div>
+</div>
+
+<div class="main-content">
+
+    <!-- 目录感卡片网格：快速识别用途 -->
+    <div class="guide-grid">
+        <div class="guide-card">
+            <div class="card-title">🧭 玩法速览</div>
+            <p>胜平负、让球、比分、总进球…… 不同彩种对应的基本规则与术语。</p>
+            <a href="https://main-footballlottery.com" class="card-link">足彩网</a>
+        </div>
+        <div class="guide-card">
+            <div class="card-title">📊 赔率与概率</div>
+            <p>赔率背后的隐含概率、返还率概念，以及如何解读变动趋势。</p>
+        </div>
+        <div class="guide-card">
+            <div class="card-title">🗓️ 赛程与数据</div>
+            <p>联赛、杯赛的赛前情报、近期战绩、伤停信息等参考维度。</p>
+        </div>
+        <div class="guide-card">
+            <div class="card-title">📋 实用工具</div>
+            <p>奖金计算器、过滤选项、对比功能，辅助分析决策。</p>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区混合 -->
+    <div class="info-block">
+        <div class="section">
+            <h2>📌 站点定位</h2>
+            <p>这个网站为经常浏览<a href="https://main-footballlottery.com" class="inline-link">足彩网</a>的用户整理了一份轻量级知识索引。不是预测平台，也不提供投注通道，而是希望帮助新老用户更清晰地了解足球竞猜的基础逻辑、常见规则以及数据获取方式。</p>
+            <p style="margin-top:0.5rem;">你可以把它当作一个入门向导，或者查找关键术语的口袋手册。</p>
+        </div>
+        <div class="section">
+            <h2>⚠️ 重要提示</h2>
+            <ul>
+                <li>竞猜活动应基于个人判断，量力而行</li>
+                <li>任何形式的“稳胆”“必中”说法均不可信</li>
+                <li>只参考合法合规渠道提供的信息</li>
+                <li>理性参与，保持娱乐心态</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 额外的提示区，带一点叙述感 -->
+    <div class="tip-box">
+        <strong>📖 一点说明：</strong>
+        <p>很多人刚接触这个领域时，容易被各种术语绕晕。实际上，大部分玩法都建立在“胜平负”的基础框架之上。学会看赔率结构、了解返还率含义，比盲目跟单更有意义。<a href="https://main-footballlottery.com" class="inline-link">足彩网</a>会经常更新一些基础释义和案例，适合静下心来浏览几遍。</p>
+    </div>
+
+    <!-- 相关信息区 / FAQ 摘要 -->
+    <div class="related-area">
+        <h3>🔎 常见知识点 · 摘要</h3>
+        <div class="faq-item">
+            <div class="q">让球盘中的“半一”是什么意思？</div>
+            <div class="a">一种亚洲让球表达，表示让球方打平全输、赢一球赢一半、赢两球全赢，具体需结合对应水位理解。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">为什么同场比赛不同平台赔率不同？</div>
+            <div class="a">每家机构的风控模型、受注平衡策略都不完全一样，赔率差异是正常现象，可对比参考但不必过度纠结。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">“返还率”怎么看？</div>
+            <div class="a">返还率反映了平台抽水后的理论回报水平，一般 90%–97% 之间，越高对参与者越有利（但也要看赔率合理性）。</div>
+        </div>
+        <div style="margin-top:0.7rem; font-size:0.9rem; color:#475569;">
+            💡 更多解释可以在<a href="https://main-footballlottery.com" class="inline-link">足彩网</a>相应栏目下找到，每个概念都配有简短说明。
+        </div>
+    </div>
+
+    <footer>
+        内容仅供学习参考 · 请遵守所在地法律法规
+    </footer>
+</div>
+
+</body>
+</html>
